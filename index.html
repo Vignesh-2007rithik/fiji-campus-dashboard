@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiji Campus Bus & Weather Dashboard</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#4facfe;
+    margin:0;
+    padding:20px;
+}
+.container{
+    max-width:600px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+}
+h1{
+    text-align:center;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+button{
+    padding:10px 20px;
+    background:#0077cc;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+button:hover{
+    background:#005fa3;
+}
+#result{
+    margin-top:15px;
+    font-weight:bold;
+}
+.weather{
+    margin-top:30px;
+    background:#d9f3ff;
+    padding:15px;
+    border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🚌 Fiji Campus Bus & Weather Dashboard ☀️</h1>
+
+<h2>Bus Fare Calculator</h2>
+
+<label>Enter your bus fare budget (FJD):</label>
+<input type="number" id="budget" placeholder="Enter budget">
+
+<button onclick="calculateRides()">Calculate Rides</button>
+
+<p id="result"></p>
+
+<div class="weather">
+<h2>Today's Weather - Suva</h2>
+<p><strong>Forecast:</strong> Partly Cloudy</p>
+<p><strong>Temperature:</strong> 27°C</p>
+<p><strong>Humidity:</strong> 80%</p>
+<p><strong>Wind:</strong> Light easterly breeze</p>
+</div>
+
+</div>
+
+<script>
+// This function calculates how many bus rides a student can afford.
+// Each ride costs FJD 7.50.
+
+function calculateRides() {
+
+    const fare = 7.50;
+    const budgetInput = document.getElementById("budget").value;
+
+    // Check if the budget is empty or negative
+    if (budgetInput === "" || parseFloat(budgetInput) < 0) {
+        document.getElementById("result").style.color = "red";
+        document.getElementById("result").innerHTML =
+            "Please enter a valid positive dollar amount.";
+        return;
+    }
+
+    const budget = parseFloat(budgetInput);
+    const rides = Math.floor(budget / fare);
+
+    document.getElementById("result").style.color = "green";
+    document.getElementById("result").innerHTML =
+        "With FJD " + budget.toFixed(2) +
+        ", you can afford " + rides + " bus ride(s).";
+}
+</script>
+
+</body>
+</html>
